@@ -30,6 +30,10 @@ public class OrderServiceImpl implements OrderService{
         var orderItems =  orderRequest.getOrderItems().stream().map(this::mapToOrderItemEntity).toList();
         order.setOrderItems(orderItems);
 
+
+        // Checks
+        // ! All products exits in the inventory
+        // ! no enough stock?.Throw an exception
         orderRepository.save(order);
     }
 

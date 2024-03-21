@@ -12,9 +12,10 @@ POST http://localhost:6000/api/products HTTP/1.1
 Content-Type:  application/json
 
 {
-    "name": "ASUS",
-    "warrant": "2 years", 
-    "price": 300000
+    "name": "Lenovo",
+    "warrant": "1 years", 
+    "price": 140000,
+    "productCode": "Lv1o4"
 }
 
 ### Get Product
@@ -44,4 +45,18 @@ Content-Type: application/json
         }
     ]
 }
+
+
+###
+
+### Save Inventory
+# @name SaveInventory
+POST  http://localhost:6002/api/inventory/create HTTP/1.1
+Content-Type: application/json
+
+{
+    "productCode": "Lv1o4",
+    "quantity": "200"
+}
+
 

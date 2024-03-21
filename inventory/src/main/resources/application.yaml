@@ -1,0 +1,17 @@
+server:
+    port: 6002
+spring:
+    application:
+        name: inventory-service
+    data:
+        mongodb:
+            # url: mongodb://root:generic@localhost:27017/inventory?authSource=admin
+            host: localhost
+            port: 27017
+            database: inventory
+            username: root
+            password: generic
+            authentication-database: admin
+  
+
+# mongodb://root:generic@localhost:27017/?authSource=admin

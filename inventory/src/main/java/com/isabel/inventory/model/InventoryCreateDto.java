@@ -1,6 +1,4 @@
-package com.isabel.productservice.model;
-
-import java.math.BigDecimal;
+package com.isabel.inventory.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,13 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ProductCreateRequest {
-
-
-  
-    private String name;
-    private BigDecimal price;
-    private String productCode;
-
+public class InventoryCreateDto {
     
+  
+    private String productCode;
+    private Integer quantity;
 }
