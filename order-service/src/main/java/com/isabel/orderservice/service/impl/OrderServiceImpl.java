@@ -40,7 +40,7 @@ public class OrderServiceImpl implements OrderService{
    }
 
     @Override
-    public void placeOrder(OrderRequest orderRequest) {
+    public String placeOrder(OrderRequest orderRequest) {
         Order order = new Order();
 
         // Checks
@@ -74,7 +74,9 @@ public class OrderServiceImpl implements OrderService{
                     order.setOrderTime(Instant.now());
                     var orderItems = orderRequest.getOrderItems().stream().map(this::mapToOrderItemEntity).toList();
                     order.setOrderItems(orderItems);
+
                     orderRepository.save(order);
+                    return order.getOrderNumber();
                 } else {
                     // ! throw an exception with the listing of the products that do have enough
                     log.error("Not Enough stock");

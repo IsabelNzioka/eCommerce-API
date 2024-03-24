@@ -32,9 +32,13 @@ public class OrderController {
     }
 
     @PostMapping("placeOrder")
-    public GenericResponse<?> placeOrder(@RequestBody OrderRequest orderRequest) {
-        orderService.placeOrder(orderRequest);
-        GenericResponse<?> resp = GenericResponse.builder().success(true).msg("Order Placed successfully").build();
+    public GenericResponse<String> placeOrder(@RequestBody OrderRequest orderRequest) {
+        
+        GenericResponse<String> resp = GenericResponse.<String>builder()
+            .success(true)
+            .msg("Order Placed successfully")
+            .data(orderService.placeOrder(orderRequest))
+            .build();
         return resp;
     }
     
