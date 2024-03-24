@@ -76,6 +76,10 @@ public class OrderServiceImpl implements OrderService{
                     order.setOrderItems(orderItems);
 
                     orderRepository.save(order);
+
+                    // TODO - Make a call to the inventory to reduce quantity
+                     // TODO - Process payment for an order
+
                     return order.getOrderNumber();
                 } else {
                     // ! throw an exception with the listing of the products that do have enough
