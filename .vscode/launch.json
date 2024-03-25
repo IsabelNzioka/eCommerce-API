@@ -2,6 +2,12 @@
     "configurations": [
         {
             "type": "java",
+            "name": "ServiceDiscoveryServerApplication",
+            "request": "launch",
+            "mainClass": "com.isabel.servicediscoveryserver.ServiceDiscoveryServerApplication"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-InventoryApplication<inventory>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
