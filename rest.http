@@ -37,7 +37,7 @@ Content-Type: application/json
     "orderItems": [
         {
             "productCode":  "ASUS_02",
-            "quantity": 8
+            "quantity": 3
         }
     ]
 }
