@@ -13,6 +13,9 @@ sencha-error*
 .settings/
 .externalToolBuilders/
 
+### VS Code ###
+.vscode/
+
 # Intellij
 .idea/
 *.iml
