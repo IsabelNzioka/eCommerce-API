@@ -2,17 +2,13 @@ server:
    port: 6000
 
 spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/product_service
-    username: isabel
-    password: Seniordev15*
+  profiles: 
+    active: development, default
   application:
     name: product-service
   config:
     import: optional:configserver:http://localhost:8888
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: update
+
+
 
 
