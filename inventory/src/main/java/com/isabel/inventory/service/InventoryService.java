@@ -10,6 +10,8 @@ public interface InventoryService {
     InventoryResponse createInventory(InventoryCreateDto inventoryCreateDto);
 
     Boolean checkInventory(List<String> productCodes, List<Integer> productQuantities);
+    
+    List<InventoryResponse> createInventories(List<InventoryCreateDto> inventoryCreateDtos);
 
     
 } 

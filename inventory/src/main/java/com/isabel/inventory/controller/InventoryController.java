@@ -45,6 +45,17 @@ public class InventoryController {
       
         return GenericResponse.<InventoryResponse>builder().data(inventoryService.createInventory(inventoryCreateDto)).success(true).msg("Inventory Saved Successfully").build();
     }
+
+    @PostMapping("create-inventories")
+    @ResponseStatus(HttpStatus.CREATED)
+    public GenericResponse<List<InventoryResponse>> addInventories(@RequestBody List<InventoryCreateDto> inventoryCreateDtos) {
+        List<InventoryResponse> inventoryResponses = inventoryService.createInventories(inventoryCreateDtos);
+    return GenericResponse.<List<InventoryResponse>>builder()
+            .data(inventoryResponses)
+            .success(true)
+            .msg("Inventories Saved Successfully")
+            .build();
+}
     
     @GetMapping("check")
     @ResponseStatus(code = HttpStatus.OK)

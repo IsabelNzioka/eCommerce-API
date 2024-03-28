@@ -2,6 +2,7 @@ package com.isabel.inventory.exception;
 
 import java.util.Map;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -19,6 +20,16 @@ public class ControllerAdvice {
                 .success(false)
                 .msg(ex.getMessage())
                 .data(ex.getUnavailableItems())
+                .build();
+                return resp;
+    }
+
+    @ExceptionHandler(UniqueProductCodeException.class)
+    @ResponseStatus(code = HttpStatus.NOT_FOUND)
+    public GenericResponse<?> handleDataIntegrityViolation(UniqueProductCodeException ex){
+            GenericResponse<?> resp = GenericResponse.builder()
+                .success(false)
+                .msg(ex.getMessage())
                 .build();
                 return resp;
     }
