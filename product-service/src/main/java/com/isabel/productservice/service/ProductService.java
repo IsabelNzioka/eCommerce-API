@@ -8,8 +8,8 @@ import com.isabel.productservice.model.ProductCreateResponse;
 public interface ProductService {
   
     ProductCreateResponse createProduct(ProductCreateRequest productCreateRequest);
-
-    List<ProductCreateResponse> findAll();
+    List<ProductCreateResponse> createProducts(List<ProductCreateRequest> productCreateRequests);
+    List<ProductCreateResponse> findAll(String sortBy);
     ProductCreateResponse findById(Integer productId);
 
 

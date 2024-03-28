@@ -47,7 +47,8 @@
             "mainClass": "com.isabel.apigateway.ApiGatewayApplication",
             "projectName": "api-gateway",
             "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote"
         },
         {
             "type": "java",
@@ -56,6 +57,26 @@
             "cwd": "${workspaceFolder}",
             "mainClass": "com.isabel.servicediscoveryserver.ServiceDiscoveryServerApplication",
             "projectName": "service-discovery-server",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-OnlineShoppingConfigServerApplication<online-shopping-config-server>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.isabel.onlineshoppingconfigserver.OnlineShoppingConfigServerApplication",
+            "projectName": "online-shopping-config-server",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-CustomerServiceApplication<customer-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.isabel.customerservice.CustomerServiceApplication",
+            "projectName": "customer-service",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }

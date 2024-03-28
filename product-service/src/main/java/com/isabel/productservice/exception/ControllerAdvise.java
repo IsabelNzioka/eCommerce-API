@@ -20,4 +20,14 @@ public class ControllerAdvise {
                 .build();
                 return resp;
     }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    @ResponseStatus(code = HttpStatus.NOT_FOUND)
+    public GenericResponse<?> handleDataIntegrityViolation(DataIntegrityViolationException ex){
+            GenericResponse<?> resp = GenericResponse.builder()
+                .success(false)
+                .msg(ex.getMessage())
+                .build();
+                return resp;
+    }
 }
