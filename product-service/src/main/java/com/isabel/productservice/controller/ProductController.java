@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,8 +34,8 @@ public class ProductController {
     }
 
     @GetMapping
-    public GenericResponse<List<ProductCreateResponse>> list() {
-       List<ProductCreateResponse> pr = productService.findAll();
+    public GenericResponse<List<ProductCreateResponse>> list(@RequestParam(required = false) String sortBy) {
+       List<ProductCreateResponse> pr = productService.findAll(sortBy);
        GenericResponse<List<ProductCreateResponse>> resp = GenericResponse.<List<ProductCreateResponse>>builder()
                 .success(true)
                 .msg("Data fetched Successfully")
@@ -69,6 +70,18 @@ public class ProductController {
         return resp;
     }
     
+    @PostMapping("/create-products")
+    public GenericResponse<List<ProductCreateResponse>> createProducts(@RequestBody List<ProductCreateRequest> productCreateRequests) {
+    log.info("We received : {}", productCreateRequests);
+    
+    List<ProductCreateResponse> responses = productService.createProducts(productCreateRequests);
+    GenericResponse<List<ProductCreateResponse>> resp = GenericResponse.<List<ProductCreateResponse>>builder()
+            .success(true)
+            .msg("Data saved Successfully")
+            .data(responses)
+            .build();
+    return resp;
+}
 
 
     

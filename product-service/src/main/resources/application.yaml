@@ -2,8 +2,16 @@ server:
    port: 6000
 
 spring:
-  profiles: 
-    active: development, default
+  # profiles: 
+  #   active: development, default
+  datasource:
+    url: jdbc:mysql://localhost:3306/product_service
+    username: isabel
+    password: Seniordev15*
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
   application:
     name: product-service
   config:

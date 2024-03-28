@@ -4,19 +4,46 @@ GET http://localhost:7000/api/hello HTTP/1.1
 
 ### List Products
 # @name ProductList
-GET http://localhost:7000/api/products HTTP/1.1
+GET http://localhost:7000/api/products?sortBy=productCode HTTP/1.1
 
-### LSave Products
+
+### Save Product
 # @name SaveProduct
 POST http://localhost:7000/api/products HTTP/1.1
 Content-Type:  application/json
 
 {
-    "name": "Asus",
+    "name": "Lenovo",
     "warrant": "1 years", 
     "price": 140000,
-    "productCode": "AS1o4"
+    "productCode": "AS1o5"
 }
+
+###Save Products
+POST http://localhost:7000/api/products/create-products HTTP/1.1
+Content-Type: application/json
+
+[
+  {
+    "name": "Lenovo",
+    "warranty": "1 year",
+    "price": 140000,
+    "productCode": "AS105"
+  },
+  {
+    "name": "Dell",
+    "warranty": "2 years",
+    "price": 180000,
+    "productCode": "DE102"
+  },
+  {
+    "name": "HP",
+    "warranty": "3 years",
+    "price": 200000,
+    "productCode": "HP101"
+  }
+]
+
 
 ### Get Product
 # @name GetProductById
@@ -36,7 +63,7 @@ Content-Type: application/json
 {
     "orderItems": [
         {
-            "productCode":  "ASUS_10",
+            "productCode":  "ASUS_15",
             "quantity": 6
         }
     ]
@@ -51,8 +78,8 @@ POST  http://localhost:7000/api/inventory/create HTTP/1.1
 Content-Type: application/json
 
 {
-    "productCode": "ASUS_10",
-    "quantity": "10"
+    "productCode": "ASUS_15",
+    "quantity": "11"
 }
 
 
