@@ -13,10 +13,11 @@ POST http://localhost:7000/api/products HTTP/1.1
 Content-Type:  application/json
 
 {
-    "name": "Lenovo",
-    "warrant": "1 years", 
+    "name": "QWERTY Keyboard",
     "price": 140000,
-    "productCode": "AS1o5"
+    "productCode": "AS105",
+    "image": "https://images.unsplash.com/photo-1531092601737-e5b3b6e57365?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDB8fHRlY2glMjBwcm9kdWN0c3xlbnwwfHwwfHx8MA%3D%3D"
+   
 }
 
 ###Save Products
@@ -25,22 +26,46 @@ Content-Type: application/json
 
 [
   {
-    "name": "Lenovo",
-    "warranty": "1 year",
+    "name": "QWERTY Keyboard",
     "price": 140000,
-    "productCode": "AS105"
+    "productCode": "QWT1055",
+    "image": "https://images.unsplash.com/photo-1531092601737-e5b3b6e57365?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDB8fHRlY2glMjBwcm9kdWN0c3xlbnwwfHwwfHx8MA%3D%3D"
+   
   },
   {
-    "name": "Dell",
-    "warranty": "2 years",
+    "name": "AZERTY Keyboard",
     "price": 180000,
-    "productCode": "DE102"
+    "productCode": "DEB1042",
+    "image": "https://plus.unsplash.com/premium_photo-1664194583917-b0ba07c4ce2a?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+   
   },
   {
-    "name": "HP",
-    "warranty": "3 years",
+    "name": "QWERTZ Keyboard",
     "price": 200000,
-    "productCode": "HP101"
+    "productCode": "QW1031",
+    "image": "https://images.unsplash.com/photo-1531092601737-e5b3b6e57365?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDB8fHRlY2glMjBwcm9kdWN0c3xlbnwwfHwwfHx8MA%3D%3D"
+  
+  },
+  {
+    "name": "QWERTY Keyboard",
+    "price": 140000,
+    "productCode": "QT10v5",
+    "image": "https://plus.unsplash.com/premium_photo-1664194583917-b0ba07c4ce2a?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+   
+  },
+  {
+    "name": "AZERTY Keyboard",
+    "price": 180000,
+    "productCode": "AZ10r2",
+    "image": "https://images.unsplash.com/photo-1531092601737-e5b3b6e57365?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDB8fHRlY2glMjBwcm9kdWN0c3xlbnwwfHwwfHx8MA%3D%3D"
+ 
+  },
+  {
+    "name": "QWERTZ Keyboard",
+    "price": 200000,
+    "productCode": "HP10y1",
+    "image": "https://images.unsplash.com/photo-1531092601737-e5b3b6e57365?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDB8fHRlY2glMjBwcm9kdWN0c3xlbnwwfHwwfHx8MA%3D%3D"
+   
   }
 ]
 
@@ -63,7 +88,7 @@ Content-Type: application/json
 {
     "orderItems": [
         {
-            "productCode":  "DE102",
+            "productCode":  "HKCv_T3252U",
             "quantity": 6
         }
     ]
@@ -78,7 +103,7 @@ POST  http://localhost:7000/api/inventory/create HTTP/1.1
 Content-Type: application/json
 
 {
-    "productCode": "HKC T3252U",
+    "productCode": "H590929U",
     "quantity": "1100"
 }
 
@@ -94,14 +119,22 @@ Content-Type: application/json
     "quantity": "10012"
   },
   {
-    "productCode": "DE102",
+    "productCode": "AS1o2",
     "quantity": "102"
-  },
-  {
-    "productCode": "HP101",
-    "quantity": "1003"
   }
+ 
 ]
+
+
+### Get Inventories
+GET http://localhost:7000/api/inventory
+
+
+### Get Inventories
+GET http://localhost:6002/api/inventory
+### check if products exists
+###y
+GET http://localhost:7000/api/products/check?productCodes=AS1o4,AS105
 
 
 

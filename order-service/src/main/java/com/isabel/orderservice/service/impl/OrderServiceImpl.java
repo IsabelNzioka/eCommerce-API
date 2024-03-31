@@ -55,8 +55,10 @@ public class OrderServiceImpl implements OrderService{
             productCodes.add(orderItemRequest.getProductCode());
             productQuantities.add(orderItemRequest.getQuantity());
         }
+
         log.info("{}", productCodes);
         log.info("{}", productQuantities);
+        
         GenericResponse<?> response = webClientBuilder.build().get()
                 .uri("http://INVENTORY-SERVICE/api/inventory/check",
                         uriBuilder -> uriBuilder
@@ -68,6 +70,9 @@ public class OrderServiceImpl implements OrderService{
                 .bodyToMono(new ParameterizedTypeReference<GenericResponse<?>>() {
                 })
                 .block();
+
+                
+
                 if (response.isSuccess()) {
                     // stock
                     order.setOrderNumber(UUID.randomUUID().toString());

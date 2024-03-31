@@ -88,6 +88,25 @@ public class ProductServiceImpl implements ProductService {
         throw new ProductNotFoundException("Product with id not found");
     }
 
+    @Override
+    public Boolean checkProducts(List<String> productCodes) {
+        List<String> unavailableProducts = new ArrayList<>();
+
+        for (String productCode : productCodes) {
+            Product product = productRepository.findByProductCode(productCode);
+            if (product == null) {
+                unavailableProducts.add(productCode);
+            }
+        }
+
+        if (unavailableProducts.isEmpty()) {
+            return true;
+        } else {
+            throw new ProductNotFoundException("Product does not exist: " + unavailableProducts);
+        }
+      
+    }
+
    
 
     
