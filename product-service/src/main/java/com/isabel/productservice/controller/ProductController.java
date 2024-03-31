@@ -15,11 +15,13 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.List;
 
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 
 @RequestMapping("api/products")
@@ -82,6 +84,20 @@ public class ProductController {
             .build();
     return resp;
 }
+
+    @GetMapping("/check")
+    @ResponseStatus(code = HttpStatus.OK)
+    public GenericResponse<Boolean> checkProducts(
+            @RequestParam(name = "productCodes") List<String> productCodes) {
+
+        boolean allProductsExist = productService.checkProducts(productCodes);
+
+        return GenericResponse.<Boolean>builder()
+                .data(allProductsExist)
+                .success(true)
+                .msg("Product Exists")
+                .build();
+    }
 
 
     

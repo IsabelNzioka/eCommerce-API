@@ -12,6 +12,16 @@ import com.isabel.inventory.model.GenericResponse;
 
 @RestControllerAdvice
 public class ControllerAdvice {
+
+    @ExceptionHandler(ProductServiceException.class)
+    @ResponseStatus(code = HttpStatus.NOT_FOUND)
+    public GenericResponse<?> handleProductServiceException(ProductServiceException ex){
+            GenericResponse<?> resp = GenericResponse.builder()
+                .success(false)
+                .msg(ex.getMessage())
+                .build();
+                return resp;
+    }
     
     @ExceptionHandler(NotEnoughQuantityException.class)
     @ResponseStatus(code = HttpStatus.OK)

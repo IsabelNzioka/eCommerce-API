@@ -11,8 +11,10 @@ import com.isabel.inventory.service.InventoryService;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -32,11 +34,19 @@ public class InventoryController {
         this.inventoryService = inventoryService;
     }
 
+    @CrossOrigin(origins = "http://localhost:1841")
+    @GetMapping
+        public GenericResponse<List<InventoryResponse>> findAll() {
+        List<InventoryResponse> inventoryResponses = inventoryService.findAll();
 
+        GenericResponse<List<InventoryResponse>> response = GenericResponse.<List<InventoryResponse>>builder()
+                .success(true)
+                .msg("Data fetched successfully")
+                .data(inventoryResponses)
+                .build();
 
-    @GetMapping("path")
-    public String getMethodName(@RequestParam String param) {
-        return new String();
+        log.info("Returned inventory data: {}", inventoryResponses);
+        return response;
     }
 
     @PostMapping("create")
@@ -45,6 +55,9 @@ public class InventoryController {
       
         return GenericResponse.<InventoryResponse>builder().data(inventoryService.createInventory(inventoryCreateDto)).success(true).msg("Inventory Saved Successfully").build();
     }
+
+
+
 
     @PostMapping("create-inventories")
     @ResponseStatus(HttpStatus.CREATED)
@@ -56,6 +69,10 @@ public class InventoryController {
             .msg("Inventories Saved Successfully")
             .build();
 }
+
+
+
+
     
     @GetMapping("check")
     @ResponseStatus(code = HttpStatus.OK)

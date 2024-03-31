@@ -13,4 +13,7 @@ public interface ProductService {
     ProductCreateResponse findById(Integer productId);
 
 
+    Boolean checkProducts(List<String> productCodes);
+
+
 }

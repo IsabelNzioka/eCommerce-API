@@ -13,5 +13,9 @@ public interface InventoryService {
     
     List<InventoryResponse> createInventories(List<InventoryCreateDto> inventoryCreateDtos);
 
+
+
+    public List<InventoryResponse> findAll();
+
     
 } 
