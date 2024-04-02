@@ -34,7 +34,7 @@ public class InventoryController {
         this.inventoryService = inventoryService;
     }
 
-    @CrossOrigin(origins = "http://localhost:1841")
+    
     @GetMapping
         public GenericResponse<List<InventoryResponse>> findAll() {
         List<InventoryResponse> inventoryResponses = inventoryService.findAll();

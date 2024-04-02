@@ -15,9 +15,13 @@ spring:
       globalcors:
         cors-configurations:
           '[/**]':
-            allowedOrigins: "https://docs.spring.io"
+            allowedOrigins: "*"
+            allowedHeaders: '*'
             allowedMethods:
             - GET
+            - POST
+            - DELETE
+            - PUT
             
       routes:
         - id: products
