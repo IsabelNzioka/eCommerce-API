@@ -1,0 +1,30 @@
+<configuration>
+    <!-- Console Appender -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MMM-dd hh:mm:ss a} %level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- JDBC Appender for Database Logging -->
+    <!-- <appender name="database" class="ch.qos.logback.classic.db.DBAppender">
+        <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
+            <driverClass>com.mysql.jdbc.Driver</driverClass>
+            <url>jdbc:mysql://localhost:3306/logging</url>
+            <user>isabel</user>
+            <password>Seniordev15*</password>
+        </connectionSource>
+        <sqlDialect class="ch.qos.logback.core.db.dialect.MySQLDialect" />
+        <insertionSql>
+            <![CDATA[
+            INSERT INTO LOGS (date_time, class, level, message) VALUES (?, ?, ?, ?)
+            ]]>
+        </insertionSql>
+    </appender> -->
+
+    <!-- Root Logger Configuration -->
+    <root level="INFO">
+        <appender-ref ref="console" />
+        <!-- <appender-ref ref="database" /> -->
+    </root>
+</configuration>
