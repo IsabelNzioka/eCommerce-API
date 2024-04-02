@@ -1,35 +1,46 @@
 server:
-    port: 7000
+  port: 7000
+
 spring:
-    application:
-        name: api-gateway
-    config:
-        import: optional:configserver:http://localhost:8888
-    cloud:
-      gateway:
-        routes:
-          - id: products
-            uri: lb://PRODUCT-SERVICE
-            predicates:
-              - Path=/api/products/**
+  application:
+    name: api-gateway
+  config:
+    import: optional:configserver:http://localhost:8888
+  # datasource:
+  #   url: jdbc:mysql://localhost:3306/product_service
+  #   username: isabel
+  #   password: Seniordev15*
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "https://docs.spring.io"
+            allowedMethods:
+            - GET
+            
+      routes:
+        - id: products
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/api/products/**
 
-          - id: hello
-            uri: lb://PRODUCT-SERVICE
-            predicates:
-              - Path=/api/hello
-         
+        - id: categories
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/api/categories/**
 
-          - id: orders
-            uri: lb://ORDER-SERVICE
-            predicates:
-              - Path=/api/orders/**
-
-          - id: inventory
-            uri: lb://INVENTORY-SERVICE
-            predicates:
-              - Path=/api/inventory/**
-
-
-
-
-
+        - id: hello
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/api/hello/**
+        
+        - id: orders
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/api/orders/**
+        
+        - id: inventory
+          uri: lb://INVENTORY-SERVICE
+          predicates:
+            - Path=/api/inventory/**

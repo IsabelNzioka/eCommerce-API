@@ -1,5 +1,5 @@
 server:
-   port: 6000
+   port: 8000
 
 spring:
   # profiles: 
@@ -18,5 +18,11 @@ spring:
     import: optional:configserver:http://localhost:8888
 
 
+logging:
+  # config: classpath:log4j2.properties
+  level:
+    root: INFO
 
+log4j2:
+  enableJndiJdbc: true
 

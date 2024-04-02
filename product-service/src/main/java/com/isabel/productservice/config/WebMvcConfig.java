@@ -1,4 +1,4 @@
-package com.isabel.inventory.config;
+package com.isabel.productservice.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -11,7 +11,7 @@ public class WebMvcConfig  implements WebMvcConfigurer{
     public void addCorsMappings(@SuppressWarnings("null") CorsRegistry registry) {
         registry.addMapping("/api/**") 
                 .allowedOrigins("http://localhost:1841") 
-                .allowedMethods("GET", "POST", "PUT", "DELETE")
+                .allowedMethods("GET", "POST", "PUT", "DELETE") 
                 .allowedHeaders("*") 
                 .allowCredentials(true); 
     }
