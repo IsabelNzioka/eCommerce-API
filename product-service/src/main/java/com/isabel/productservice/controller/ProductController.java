@@ -16,6 +16,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,11 +24,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 
 @RequestMapping("api/products")
 @RestController
-@Slf4j
+// @Slf4j
 public class ProductController {
+
+    Logger logger = LogManager.getLogger(ProductController.class);
 
     private final ProductService productService;
 
@@ -35,6 +41,7 @@ public class ProductController {
         this.productService = productService;
     }
 
+   
     @GetMapping
     public GenericResponse<List<ProductCreateResponse>> list(@RequestParam(required = false) String sortBy) {
        List<ProductCreateResponse> pr = productService.findAll(sortBy);
@@ -43,7 +50,7 @@ public class ProductController {
                 .msg("Data fetched Successfully")
                 .data(pr)
                 .build();
-                log.info("We returned : {}",pr);
+                logger.info("We returned : {}",pr);
                 return resp;
     }
 
@@ -55,26 +62,26 @@ public class ProductController {
                 .msg("Data fetched Successfully")
                 .data(pr)
                 .build();
-                log.info("We returned : {}",pr);
+                logger.info("We returned : {}",pr);
                 return resp;
     }
 
     @PostMapping
     public GenericResponse<ProductCreateResponse> createProduct(@RequestBody ProductCreateRequest productCreateRequest) {
-                log.info("We received : {}",productCreateRequest);
+                logger.info("We received : {}",productCreateRequest);
         ProductCreateResponse pr = productService.createProduct(productCreateRequest);
         GenericResponse<ProductCreateResponse> resp = GenericResponse.<ProductCreateResponse>builder()
                 .success(true)
                 .msg("Data saved Successfully")
                 .data(pr)
                 .build();
-                log.info("We returned : {}",pr);
+                logger.info("We returned : {}",pr);
         return resp;
     }
     
     @PostMapping("/create-products")
     public GenericResponse<List<ProductCreateResponse>> createProducts(@RequestBody List<ProductCreateRequest> productCreateRequests) {
-    log.info("We received : {}", productCreateRequests);
+    logger.info("We received : {}", productCreateRequests);
     
     List<ProductCreateResponse> responses = productService.createProducts(productCreateRequests);
     GenericResponse<List<ProductCreateResponse>> resp = GenericResponse.<List<ProductCreateResponse>>builder()

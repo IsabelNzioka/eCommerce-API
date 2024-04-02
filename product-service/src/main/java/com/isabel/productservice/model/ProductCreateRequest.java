@@ -2,6 +2,8 @@ package com.isabel.productservice.model;
 
 import java.math.BigDecimal;
 
+import com.isabel.productservice.entity.Category;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,6 +21,8 @@ public class ProductCreateRequest {
     private BigDecimal price;
     private String productCode;
     private String image;
+    
+    private String categoryName;
 
     
 }

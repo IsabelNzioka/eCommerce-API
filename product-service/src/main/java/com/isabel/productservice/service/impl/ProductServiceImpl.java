@@ -7,11 +7,13 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.isabel.productservice.entity.Category;
 import com.isabel.productservice.entity.Product;
 import com.isabel.productservice.exception.DataIntegrityViolationException;
 import com.isabel.productservice.exception.ProductNotFoundException;
 import com.isabel.productservice.model.ProductCreateRequest;
 import com.isabel.productservice.model.ProductCreateResponse;
+import com.isabel.productservice.repository.CategoryRepository;
 import com.isabel.productservice.repository.ProductRepository;
 import com.isabel.productservice.service.ProductService;
 
@@ -21,10 +23,12 @@ public class ProductServiceImpl implements ProductService {
 
     
     private final ProductRepository productRepository;
+    private final CategoryRepository categoryRepository;
 
     // constructor injection
-    public ProductServiceImpl(ProductRepository productRepository) {
+    public ProductServiceImpl(ProductRepository productRepository, CategoryRepository categoryRepository) {
         this.productRepository = productRepository;
+        this.categoryRepository = categoryRepository;
 
     }
 
@@ -44,8 +48,18 @@ public class ProductServiceImpl implements ProductService {
         List<ProductCreateResponse> responses = new ArrayList<>();
         for (ProductCreateRequest request : productCreateRequests) {
             try {
-                Product savedProduct = productRepository.save(mapToProductEntity(request));
-                ProductCreateResponse response = mapToProductCreateResponse(savedProduct);
+                Product newProduct = mapToProductEntity(request);
+
+                Category category = categoryRepository.findByName(request.getCategoryName())
+                .orElseGet(() -> {
+                    Category newCategory = new Category();
+                    newCategory.setName(request.getCategoryName());
+                    return categoryRepository.save(newCategory);
+                });
+                
+                newProduct.setCategory(category);
+
+                ProductCreateResponse response = mapToProductCreateResponse(productRepository.save(newProduct));
                 responses.add(response);
             } catch (org.springframework.dao.DataIntegrityViolationException e) {
                 throw new DataIntegrityViolationException("Duplicate product code. Please choose a different product code.");
