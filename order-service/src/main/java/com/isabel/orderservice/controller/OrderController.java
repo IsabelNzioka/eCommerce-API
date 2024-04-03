@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 
-@RequestMapping("api/orders")
+@RequestMapping("api/v1/orders")
 @RestController
 public class OrderController {
 

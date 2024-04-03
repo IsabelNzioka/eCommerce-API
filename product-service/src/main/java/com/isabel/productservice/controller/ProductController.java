@@ -28,7 +28,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
 
-@RequestMapping("api/products")
+@RequestMapping("api/v1/products")
 @RestController
 // @Slf4j
 public class ProductController {
@@ -41,6 +41,7 @@ public class ProductController {
         this.productService = productService;
     }
 
+   
    
     @GetMapping
     public GenericResponse<List<ProductCreateResponse>> list(@RequestParam(required = false) String sortBy) {
@@ -81,7 +82,7 @@ public class ProductController {
     
     @PostMapping("/create-products")
     public GenericResponse<List<ProductCreateResponse>> createProducts(@RequestBody List<ProductCreateRequest> productCreateRequests) {
-    logger.info("We received : {}", productCreateRequests);
+    logger.info("We received>>>>>>>>>>>>>>>>>>>> : {}", productCreateRequests);
     
     List<ProductCreateResponse> responses = productService.createProducts(productCreateRequests);
     GenericResponse<List<ProductCreateResponse>> resp = GenericResponse.<List<ProductCreateResponse>>builder()

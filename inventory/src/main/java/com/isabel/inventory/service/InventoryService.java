@@ -16,6 +16,7 @@ public interface InventoryService {
 
 
     public List<InventoryResponse> findAll();
+    public void updateQuantity(String productName, int quantity);
 
     
 } 

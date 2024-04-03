@@ -1,14 +1,14 @@
 ###  Hello endpoint
-GET http://localhost:7000/api/hello HTTP/1.1
+GET http://localhost:7000/api/v1/hello HTTP/1.1
 
 
 ### List Products
 # @name ProductList
-GET http://localhost:7000/api/products?sortBy=productCode HTTP/1.1
+GET http://localhost:7000/api/v1/products?sortBy=productCode HTTP/1.1
 
 ###  SAVE CATEGORIES
 #api/categories
-POST http://localhost:7000/api/categories HTTP/1.1
+POST http://localhost:7000/api/v1/categories HTTP/1.1
 Content-Type: application/json
 
 {
@@ -16,19 +16,31 @@ Content-Type: application/json
 
 }
 
-###  Get CATEGORIES
+### GETCATEGORIES
+#
+GET http://localhost:7000/api/v1/categories HTTP/1.1
+
+
+###  Get CATEGORIES BY ID
 #api/categories
-GET http://localhost:7000/api/categories/2 HTTP/1.1
+GET http://localhost:7000/api/v1/categories/2 HTTP/1.1
+
+
+
+### GET CATEGORIES BY NAME
+#
+GET http://localhost:7000/api/v1/categories/category/Monitors HTTP/1.1
+
 
 ### Save Product
 # @name SaveProduct
-POST http://localhost:7000/api/products HTTP/1.1
+POST http://localhost:7000/api/v1/products HTTP/1.1
 Content-Type:  application/json
 
 {
     "name": "QWERTY5 Keyboard",
     "price": 140000,
-    "productCode": "ASNMn1055",
+    "productCode": "A55",
     "image": "https://images.unsplash.com/photo-1531092601737-e5b3b6e57365?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDB8fHRlY2glMjBwcm9kdWN0c3xlbnwwfHwwfHx8MA%3D%3D",
     "category": {
       "name": "Keyboards"
@@ -37,40 +49,34 @@ Content-Type:  application/json
 }
 
 ###Save Products
-POST http://localhost:7000/api/products/create-products HTTP/1.1
+POST http://localhost:7000/api/v1/products/create-products HTTP/1.1
 Content-Type: application/json
 
 [
   {
-    "name": "ACER",
+    "name": "ACEReGGG",
     "price": 10000,
-    "productCode": "AC1234",
+    "productCode": "Ns3h34d",
     "image": "https://images.unsplash.com/photo-1551645120-d70bfe84c826?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
      "categoryName": "Monitors"
-  },
-  {
-    "name": "DELL",
-    "price": 180000,
-    "productCode": "DELL123",
-    "image": "https://images.unsplash.com/photo-1586210579191-33b45e38fa2c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "categoryName": "Monitors"
   }
+ 
 ]
 
 
 ### Get Product
 # @name GetProductById
-GET http://localhost:7000/api/products/1 HTTP/1.1
+GET http://localhost:7000/api/v1/products/1 HTTP/1.1
 
 
 
 ###   ORDER SERVICE
 ## Testing endpoint
-GET http://localhost:7000/api HTTP/1.1
+GET http://localhost:7000/api v1/HTTP/1.1
 
 ### Place Order
 # @name placeorder
-POST  http://localhost:7000/api/orders/placeOrder HTTP/1.1
+POST  http://localhost:7000/api/v1/orders/placeOrder HTTP/1.1
 Content-Type: application/json
 
 {
@@ -87,7 +93,7 @@ Content-Type: application/json
 
 ### Save Inventory
 # @name SaveInventory
-POST  http://localhost:7000/api/inventory/create HTTP/1.1
+POST  http://localhost:7000/api/v1/inventory/create HTTP/1.1
 Content-Type: application/json
 
 {
@@ -95,10 +101,20 @@ Content-Type: application/json
     "quantity": "1100"
 }
 
+### Update Inventory
+# @name UpdateInventory
+PUT  http://localhost:7000/api/v1/inventory/update-quantity HTTP/1.1
+Content-Type: application/json
+
+{
+    "productCode": "Nsh34",
+    "quantity": "1100"
+}
+
 
 ### Create Inventories
 #create-inventories
-POST  http://localhost:7000/api/inventory/create-inventories HTTP/1.1
+POST  http://localhost:7000/api/v1/inventory/create-inventories HTTP/1.1
 Content-Type: application/json
 
 [
@@ -115,18 +131,18 @@ Content-Type: application/json
 
 
 ### Get Inventories
-GET http://localhost:7000/api/inventory
+GET http://localhost:7000/api/v1/inventory
 
 
 ### Get Inventories
 GET http://localhost:6002/api/inventory
 
 ###
-GET http://localhost:8000/api/products
+GET http://localhost:8000/api/v1/products
 
 ### check if products exists
 ###y
-GET http://localhost:7000/api/products/check?productCodes=AS1o4,AS105
+GET http://localhost:7000/api/v1/products/check?productCodes=AS1o4,AS105
 
 
 

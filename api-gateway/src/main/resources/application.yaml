@@ -27,24 +27,24 @@ spring:
         - id: products
           uri: lb://PRODUCT-SERVICE
           predicates:
-            - Path=/api/products/**
+            - Path=/api/v1/products/**
 
         - id: categories
           uri: lb://PRODUCT-SERVICE
           predicates:
-            - Path=/api/categories/**
+            - Path=/api/v1/categories/**
 
         - id: hello
           uri: lb://PRODUCT-SERVICE
           predicates:
-            - Path=/api/hello/**
+            - Path=/api/v1/hello/**
         
         - id: orders
           uri: lb://ORDER-SERVICE
           predicates:
-            - Path=/api/orders/**
+            - Path=/api/v1/orders/**
         
         - id: inventory
           uri: lb://INVENTORY-SERVICE
           predicates:
-            - Path=/api/inventory/**
+            - Path=/api/v1/inventory/**

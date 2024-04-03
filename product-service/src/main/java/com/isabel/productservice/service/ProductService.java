@@ -9,7 +9,9 @@ public interface ProductService {
   
     ProductCreateResponse createProduct(ProductCreateRequest productCreateRequest);
     List<ProductCreateResponse> createProducts(List<ProductCreateRequest> productCreateRequests);
+
     List<ProductCreateResponse> findAll(String sortBy);
+    
     ProductCreateResponse findById(Integer productId);
 
 
