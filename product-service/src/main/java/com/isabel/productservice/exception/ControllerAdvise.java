@@ -30,4 +30,14 @@ public class ControllerAdvise {
                 .build();
                 return resp;
     }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
+    public GenericResponse<?> handleAnyOtherException(Exception ex){
+            GenericResponse<?> resp = GenericResponse.builder()
+                .success(false)
+                .msg(ex.getMessage())
+                .build();
+                return resp;
+    }
 }

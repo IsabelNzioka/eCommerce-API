@@ -16,12 +16,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
 
-@RequestMapping("api/categories")
+@RequestMapping("api/v1/categories")
 @RestController
 @Slf4j
 public class CategoryController {
@@ -33,13 +36,33 @@ public class CategoryController {
     }
 
     @GetMapping
-    public String getMethodName(@RequestParam(required=false) String param) {
-        return "Hello World";
+      public GenericResponse<List<CategoryCreateResponse>> list(@RequestParam(required = false ) String param) {
+       List<CategoryCreateResponse> pr = categoryService.findAll();
+       GenericResponse<List<CategoryCreateResponse>> resp = GenericResponse.<List<CategoryCreateResponse>>builder()
+                .success(true)
+                .msg("Data fetched Successfully")
+                .data(pr)
+                .build();
+                log.info("We returned : {}",pr);
+                return resp;
     }
     
-    @GetMapping("/{categoryId}")
+    @GetMapping("{categoryId}")
     public GenericResponse<CategoryCreateResponse> findById(@PathVariable Integer categoryId) {
         CategoryCreateResponse pr = categoryService.findById(categoryId);
+       GenericResponse<CategoryCreateResponse> resp = GenericResponse.<CategoryCreateResponse>builder()
+                .success(true)
+                .msg("Data fetched Successfully")
+                .data(pr)
+                .build();
+                
+                log.info("We returned : {}",pr);
+                return resp;
+    }
+
+    @GetMapping("category/{categoryName}")
+    public GenericResponse<CategoryCreateResponse> findByName(@PathVariable String categoryName) {
+        CategoryCreateResponse pr = categoryService.findByName(categoryName);
        GenericResponse<CategoryCreateResponse> resp = GenericResponse.<CategoryCreateResponse>builder()
                 .success(true)
                 .msg("Data fetched Successfully")

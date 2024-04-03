@@ -14,16 +14,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
 
-@RequestMapping("api/inventory")
+@RequestMapping("api/v1/inventory")
 @RestController
 @Slf4j
 public class InventoryController {
@@ -33,6 +35,8 @@ public class InventoryController {
     public InventoryController(InventoryService inventoryService) {
         this.inventoryService = inventoryService;
     }
+
+   
 
     
     @GetMapping
@@ -55,6 +59,17 @@ public class InventoryController {
       
         return GenericResponse.<InventoryResponse>builder().data(inventoryService.createInventory(inventoryCreateDto)).success(true).msg("Inventory Saved Successfully").build();
     }
+
+
+    @PutMapping("/update-quantity")
+       public GenericResponse<String> updateQuantity(@RequestBody InventoryCreateDto request) {
+        inventoryService.updateQuantity(request.getProductCode(), request.getQuantity());
+        return GenericResponse.<String>builder()
+            .data("Quantity updated: " + request.getQuantity())
+            .success(true)
+            .msg("Quantity updated successfully")
+            .build();
+}
 
 
 

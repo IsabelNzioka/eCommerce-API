@@ -48,7 +48,7 @@
             "projectName": "api-gateway",
             "args": "",
             "envFile": "${workspaceFolder}/.env",
-            "vmArgs": " -Dcom.sun.management.jmxremote"
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=38141 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=api-gateway"
         },
         {
             "type": "java",
@@ -58,7 +58,8 @@
             "mainClass": "com.isabel.servicediscoveryserver.ServiceDiscoveryServerApplication",
             "projectName": "service-discovery-server",
             "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=41601 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=service-discovery-server"
         },
         {
             "type": "java",
@@ -68,7 +69,8 @@
             "mainClass": "com.isabel.onlineshoppingconfigserver.OnlineShoppingConfigServerApplication",
             "projectName": "online-shopping-config-server",
             "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=42175 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=online-shopping-config-server"
         },
         {
             "type": "java",
@@ -77,6 +79,16 @@
             "cwd": "${workspaceFolder}",
             "mainClass": "com.isabel.customerservice.CustomerServiceApplication",
             "projectName": "customer-service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-PaymentServiceApplication<payment-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.isabel.paymentservice.PaymentServiceApplication",
+            "projectName": "payment-service",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }

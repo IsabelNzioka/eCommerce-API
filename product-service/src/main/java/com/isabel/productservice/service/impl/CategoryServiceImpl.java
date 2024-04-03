@@ -1,5 +1,7 @@
 package com.isabel.productservice.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -51,6 +53,20 @@ public class CategoryServiceImpl implements CategoryService {
        }
         throw new ProductNotFoundException("Category with id not found");
     }
+
+    @Override
+    public CategoryCreateResponse findByName(String categoryName) {
+       var category = categoryRepository.findByName(categoryName);
+       if(category.isPresent()){
+        return mapToCategoryCreateResponse(category.get());
+      }
+            throw new ProductNotFoundException("Category with Name not found");
+    }
+
+    @Override
+    public List<CategoryCreateResponse> findAll() {
+        return categoryRepository.findAll().stream().map(this::mapToCategoryCreateResponse).toList();
+  }
 
   
 }

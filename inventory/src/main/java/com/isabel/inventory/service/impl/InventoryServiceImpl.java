@@ -95,26 +95,7 @@ public class InventoryServiceImpl implements InventoryService{
 
     }
 
-    // @Override
-    // public List<InventoryResponse> createInventories(List<InventoryCreateDto> inventoryCreateDtos) {
-    //     List<InventoryResponse> inventoryResponses = new ArrayList<>();
-     
-
-    //     for (InventoryCreateDto inventoryCreateDto : inventoryCreateDtos) {
-    //         String productCode = inventoryCreateDto.getProductCode();
-    
-    //         Inventory existingInventory = inventoryRepository.findByProductCode(productCode).orElse(null);
-            
-    //         if (existingInventory != null) {
-    //            throw new UniqueProductCodeException("Product Codes should be Unique");
-    //         }
-            
-    //         Inventory savedInventory = inventoryRepository.save(mapToInventory(inventoryCreateDto));
-    //         inventoryResponses.add(mapInventoryResponse(savedInventory));
-    //     }
-    
-    //     return inventoryResponses;
-    // }
+  
 
     @Override
     public List<InventoryResponse> createInventories(List<InventoryCreateDto> inventoryCreateDtos) {
@@ -190,15 +171,16 @@ public class InventoryServiceImpl implements InventoryService{
 
     }
 
-    // @Override
-    // public List<InventoryResponse> findAll() {
-    //     // TODO Auto-generated method stub
-    //     throw new UnsupportedOperationException("Unimplemented method 'findAll'");
-    // }
+    @Override
+    public void updateQuantity(String productCode, int quantity) {
+        Inventory inventory = inventoryRepository.findByProductCode(productCode).orElse(null);
 
-
-
- 
-
-    
+        if (inventory != null) {
+            inventory.setQuantity(quantity);
+            inventoryRepository.save( inventory);
+        } else {
+            throw new UniqueProductCodeException("Inventory with productCode " + productCode + " not found");
+        }
+    }
+   
 }
