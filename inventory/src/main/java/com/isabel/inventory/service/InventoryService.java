@@ -18,5 +18,6 @@ public interface InventoryService {
     public List<InventoryResponse> findAll();
     public void updateQuantity(String productName, int quantity);
 
+    public void deleteInventories(List<String> inventoryIds);
     
 } 

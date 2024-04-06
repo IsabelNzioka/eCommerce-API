@@ -31,7 +31,7 @@ public class OrderController {
         return new String();
     }
 
-    @PostMapping("placeOrder")
+    @PostMapping("/")
     public GenericResponse<String> placeOrder(@RequestBody OrderRequest orderRequest) {
         
         GenericResponse<String> resp = GenericResponse.<String>builder()

@@ -8,9 +8,4 @@ spring:
     active: qa, default
   config:
     import: optional:configserver:http://localhost:8888
-  web:
-    cors:
-      allowed-origins: "http://localhost:1841"
-      allowed-methods: "GET,POST,PUT,DELETE"
-      allowed-headers: "*"
-      allow-credentials: true  
+

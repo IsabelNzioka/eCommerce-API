@@ -109,7 +109,7 @@ public class InventoryServiceImpl implements InventoryService{
        log.info("Product codes to check: {} >>>>>>>>>>>>>>>>>>>>>>>>>>", productCodesString);
     
 
-       URI uri = UriComponentsBuilder.fromUriString("http://localhost:7000/api/products/check")
+       URI uri = UriComponentsBuilder.fromUriString("http://localhost:7000/api/v1/products/check")
         .queryParam("productCodes", productCodesString)
         .build()
         .toUri();
@@ -180,6 +180,13 @@ public class InventoryServiceImpl implements InventoryService{
             inventoryRepository.save( inventory);
         } else {
             throw new UniqueProductCodeException("Inventory with productCode " + productCode + " not found");
+        }
+    }
+
+    @Override
+    public void deleteInventories(List<String> inventoryIds) {
+        for (String id : inventoryIds) {
+            inventoryRepository.deleteById(id);
         }
     }
    
